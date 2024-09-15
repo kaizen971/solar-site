@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarPro - Your Solar Energy Solution</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        #myVideo {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        section {
+            padding: 4rem 0;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .feature {
+            flex-basis: 30%;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .feature img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1rem;
+        }
+        #contact form {
+            display: grid;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        #contact label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        #contact input,
+        #contact textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        #contact input:focus,
+        #contact textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+        
+        #contact .btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        #contact .btn:hover,
+        #contact .btn:focus {
+            background-color: #2980b9;
+        }
+        
+        #contact .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-item {
+            flex: 0 0 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .carousel-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+        }
+        .carousel-control.prev { left: 10px; }
+        .carousel-control.next { right: 10px; }
+        @media (max-width: 768px) {
+            .feature {
+                flex-basis: 100%;
+            }
+        }
+        .stats-section {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 4rem 0;
+        }
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .stats-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            flex: 1 1 250px;
+            max-width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            color: #2ecc71;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .stat-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        @media (max-width: 768px) {
+            .stats-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .stat-card {
+                width: 100%;
+                max-width: none;
+            }
+        }
+        .products-section {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        .product-description {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            line-height: 1.4;
+        }
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        .services-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .feature {
+            flex: 1 1 300px;
+            max-width: 350px;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .feature-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .feature-content {
+            padding: 1.5rem;
+        }
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        .feature-description {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SolarPro</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <video autoplay muted loop id="myVideo">
+            <source src="./video.mp4" type="video/mp4">
+        </video>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Switch to Solar Energy with SolarPro</h1>
+                <p>Sustainable solutions for a greener future</p>
+                <a href="#contact" class="btn">Get a Free Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Nos Services</h2>
+            <div class="features">
+                <div class="feature">
+                    <img src="/img1.jpg" alt="Installation" class="feature-image" style="width: 100%; height: 50%; object-fit: cover;">
+                    <div class="feature-content">
+                        <h3 class="feature-title">Installation</h3>
+                        <p class="feature-description">Installation professionnelle de panneaux solaires pour votre maison ou votre entreprise.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <img src="/img2.jpg" alt="Maintenance" class="feature-image" style="width: 100%; height: 50%; object-fit: cover;">
+                    <div class="feature-content">
+                        <h3 class="feature-title">Maintenance</h3>
+                        <p class="feature-description">Services de maintenance réguliers pour assurer les performances optimales de votre système.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <img src="/img3.jpg" alt="Consultation" class="feature-image" style="width: 100%; height: 50%; object-fit: cover;">
+                    <div class="feature-content">
+                        <h3 class="feature-title">Consultation</h3>
+                        <p class="feature-description">Conseils d'experts pour vous aider à choisir la meilleure solution solaire adaptée à vos besoins.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2 class="section-title">Nos Produits</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="/img8.jpg" alt="Panneau Solaire Haute Efficacité" class="product-image" style="width: 100%; height: 50%; object-fit: cover;">
+                    <div class="product-info">
+                        <h3 class="product-title">Panneau Solaire Haute Efficacité</h3>
+                        <p class="product-description">Notre panneau le plus efficace pour une production d'énergie maximale.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="/img8.jpg" alt="Panneau Solaire Flexible" class="product-image" style="width: 100%; height: 50%; object-fit: cover;">
+                    <div class="product-info">
+                        <h3 class="product-title">Panneau Solaire Flexible</h3>
+                        <p class="product-description">Parfait pour les surfaces courbes et les applications portables.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="/img8.jpg" alt="Onduleur Solaire Intelligent" class="product-image" style="width: 100%; height: 50%; object-fit: cover;">
+                    <div class="product-info">
+                        <h3 class="product-title">Onduleur Solaire Intelligent</h3>
+                        <p class="product-description">Convertit le courant continu en alternatif avec une haute efficacité et un suivi intelligent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="stats-section">
+        <div class="stats-container">
+            <h2 class="stats-title">Chiffres pour l'année 2021</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    <h3 class="stat-number">70%</h3>
+                    <p class="stat-description">Réduction de votre facture d'électricité jusqu'à moins 70 %</p>
+                </div>
+                
+                <div class="stat-card">
+                    <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="2"></rect>
+                        <line x1="9" y1="18" x2="9" y2="12"></line>
+                        <line x1="15" y1="18" x2="15" y2="8"></line>
+                        <line x1="21" y1="18" x2="21" y2="4"></line>
+                    </svg>
+                    <h3 class="stat-number">270 000</h3>
+                    <p class="stat-description">Nombre d'installations raccordées en autoconsommation</p>
+                </div>
+                
+                <div class="stat-card">
+                    <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    <h3 class="stat-number">85%</h3>
+                    <p class="stat-description">Pourcentage d'installations entre 0 et 3 kW</p>
+                </div>
+                
+                <div class="stat-card">
+                    <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                    </svg>
+                    <h3 class="stat-number">78%</h3>
+                    <p class="stat-description">Pourcentage d'augmentation du coût de l'électricité en 10 ans</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form>
+                <div>
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SolarPro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel-inner');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const prevBtn = document.querySelector('.carousel-control.prev');
+            const nextBtn = document.querySelector('.carousel-control.next');
+            let currentIndex = 0;
+
+            function showItem(index) {
+                carousel.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                showItem(currentIndex);
+            });
+
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentIndex = (currentIndex + 1) % items.length;
+                showItem(currentIndex);
+            });
+        });
+    </script>
+</body>
+</html>
